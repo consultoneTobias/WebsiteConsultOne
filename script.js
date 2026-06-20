@@ -60,6 +60,55 @@ if (carouselTrack) {
   startAutoPlay();
 }
 
+// Partner spotlight carousel
+const partnerCarousel = document.getElementById('partnerCarousel');
+if (partnerCarousel) {
+  const items   = Array.from(partnerCarousel.querySelectorAll('.partner-carousel__item'));
+  const nameEl  = document.getElementById('partnerName');
+  const descEl  = document.getElementById('partnerDesc');
+  const prevBtn = document.getElementById('partnerPrev');
+  const nextBtn = document.getElementById('partnerNext');
+  const total   = items.length;
+  let current   = 0;
+  let timer;
+
+  function goTo(idx) {
+    current = (idx + total) % total;
+    const prev = (current - 1 + total) % total;
+    const next = (current + 1) % total;
+
+    items.forEach((item, i) => {
+      item.classList.remove('partner-carousel__item--active',
+                            'partner-carousel__item--prev',
+                            'partner-carousel__item--next');
+      if (i === current) item.classList.add('partner-carousel__item--active');
+      else if (i === prev) item.classList.add('partner-carousel__item--prev');
+      else if (i === next) item.classList.add('partner-carousel__item--next');
+    });
+
+    nameEl.textContent = items[current].dataset.name;
+    descEl.textContent = items[current].dataset.desc;
+  }
+
+  function resetTimer() {
+    clearInterval(timer);
+    timer = setInterval(() => goTo(current + 1), 4500);
+  }
+
+  // Klick auf Nachbar-Logo springt direkt dahin
+  items.forEach((item, i) => {
+    item.addEventListener('click', () => {
+      if (i !== current) { goTo(i); resetTimer(); }
+    });
+  });
+
+  prevBtn.addEventListener('click', () => { goTo(current - 1); resetTimer(); });
+  nextBtn.addEventListener('click', () => { goTo(current + 1); resetTimer(); });
+
+  goTo(0);
+  resetTimer();
+}
+
 // Counter animation for stats — triggers when stats enter the viewport
 function animateCounter(el, target, suffix, duration) {
   let startTime = null;

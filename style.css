@@ -366,6 +366,185 @@ p  { line-height: 1.7; }
   color: #b0b0b0;
 }
 
+/* ── PARTNER LOGOS (statisch) ───────────────────────────── */
+.partner-logos {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-top: 2.5rem;
+}
+
+.partner-logo-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.9rem;
+  width: 180px;
+}
+
+.partner-logo-card__box {
+  width: 180px;
+  height: 110px;
+  background: var(--white);
+  border: 1px solid #e8e8e8;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  transition: box-shadow 0.25s;
+}
+
+.partner-logo-card:hover .partner-logo-card__box {
+  box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+}
+
+.partner-logo-card__box img {
+  max-width: 100%;
+  max-height: 60px;
+  object-fit: contain;
+  filter: grayscale(50%) opacity(70%);
+  transition: filter 0.3s;
+}
+
+.partner-logo-card:hover .partner-logo-card__box img {
+  filter: grayscale(0%) opacity(100%);
+}
+
+.partner-logo-card__name {
+  font-family: 'TradeGothicBold', sans-serif;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-light);
+  text-align: center;
+}
+
+/* ── PARTNER SPOTLIGHT CAROUSEL ─────────────────────────── */
+.partner-carousel {
+  position: relative;
+  padding: 2rem 3.5rem 0;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.partner-carousel__items {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;
+  min-height: 110px;
+}
+
+.partner-carousel__item {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: opacity 0.35s, transform 0.35s;
+  flex-shrink: 0;
+}
+
+.partner-carousel__item--prev {
+  display: flex;
+  order: 1;
+  opacity: 0.28;
+  transform: scale(0.72);
+}
+
+.partner-carousel__item--next {
+  display: flex;
+  order: 3;
+  opacity: 0.28;
+  transform: scale(0.72);
+}
+
+.partner-carousel__item--prev img,
+.partner-carousel__item--next img {
+  height: 50px;
+  max-width: 130px;
+  object-fit: contain;
+  filter: grayscale(100%);
+}
+
+.partner-carousel__item--active {
+  display: flex;
+  order: 2;
+  opacity: 1;
+  transform: scale(1);
+}
+
+.partner-carousel__item--active img {
+  height: 90px;
+  max-width: 240px;
+  object-fit: contain;
+  filter: grayscale(20%) opacity(85%);
+}
+
+/* Pfeile */
+.partner-carousel__arrow {
+  position: absolute;
+  top: calc(2rem + 55px);
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #bbb;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  padding: 0.25rem;
+  transition: color 0.2s;
+}
+.partner-carousel__arrow svg { width: 20px; height: 20px; }
+.partner-carousel__arrow:hover { color: var(--orange); }
+.partner-carousel__arrow--prev { left: 0; }
+.partner-carousel__arrow--next { right: 0; }
+
+/* Beschreibung unterhalb */
+.partner-carousel__info {
+  margin-top: 1.75rem;
+  min-height: 80px;
+}
+
+.partner-carousel__name {
+  display: block;
+  font-family: 'TradeGothicBold', sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  color: var(--orange);
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.partner-carousel__desc-text {
+  font-size: 0.88rem;
+  color: var(--text-light);
+  line-height: 1.7;
+  text-transform: none;
+  margin: 0;
+}
+
+/* Punkte-Navigation */
+.partner-carousel__dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+.partner-carousel__dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #ccc;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.25s;
+}
+
+.partner-carousel__dot--active { background: var(--orange); }
+
 /* ── SERVICE TEASERS (HOMEPAGE) ──────────────────────────── */
 .service-teasers {
   display: grid;
@@ -413,6 +592,32 @@ p  { line-height: 1.7; }
   clip-path: polygon(0 var(--diag), 100% 0, 100% 100%, 0 100%);
   margin-top: calc(-1 * var(--diag));
 }
+/* dünne orangene Linie an der schrägen Oberkante */
+.contact-cta::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: calc(var(--diag) + 4px);
+  background: var(--orange);
+  clip-path: polygon(
+    0 var(--diag),
+    100% 0,
+    100% 4px,
+    0 calc(var(--diag) + 4px)
+  );
+  z-index: 0;
+  pointer-events: none;
+}
+/* dünne orangene Linie an der geraden Unterkante */
+.contact-cta::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--orange);
+  z-index: 0;
+  pointer-events: none;
+}
 .contact-cta__inner {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -427,13 +632,18 @@ p  { line-height: 1.7; }
   display: flex;
   gap: 1.25rem;
   align-items: center;
-  background: rgba(255,255,255,0.05);
+  background: var(--white);
   padding: 1.5rem;
   border-left: 3px solid var(--orange);
 }
+.contact-person__name { color: var(--near-black) !important; }
+.contact-person__role { color: var(--orange) !important; }
+.contact-person__data { color: var(--dark-grey) !important; }
+.contact-person__data a { color: var(--dark-grey) !important; }
+.contact-person__data a:hover { color: var(--orange) !important; }
 .contact-person__photo {
   width: 78px; height: 78px;
-  border-radius: 50%;
+  border-radius: 0;
   background: var(--orange);
   flex-shrink: 0;
   display: flex; align-items: center; justify-content: center;
@@ -568,7 +778,7 @@ p  { line-height: 1.7; }
 .team-card { text-align: center; }
 .team-card__photo {
   width: 148px; height: 148px;
-  border-radius: 50%;
+  border-radius: 0;
   background: var(--mid-grey);
   margin: 0 auto 1.25rem;
   display: flex; align-items: center; justify-content: center;
@@ -576,7 +786,7 @@ p  { line-height: 1.7; }
   font-weight: 700; font-size: 2.2rem;
   color: var(--orange);
   overflow: hidden;
-  border: 3px solid var(--orange);
+  border-bottom: 3px solid var(--orange);
 }
 .team-card__photo img { width: 100%; height: 100%; object-fit: cover; }
 .team-card__name {
@@ -586,7 +796,8 @@ p  { line-height: 1.7; }
   color: var(--dark-grey);
   margin-bottom: 0.2rem;
 }
-.team-card__role { font-size: 0.78rem; color: var(--orange); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; margin-bottom: 0.6rem; }
+.team-card__role { font-size: 0.78rem; color: var(--orange); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; margin-bottom: 0.5rem; }
+.team-card__desc { font-size: 0.82rem; color: var(--text-light); line-height: 1.55; text-transform: none; margin-bottom: 0.6rem; }
 .team-card__email a { font-size: 0.82rem; color: var(--text-light); text-decoration: none; transition: color 0.2s; }
 .team-card__email a:hover { color: var(--orange); }
 
@@ -719,21 +930,30 @@ p  { line-height: 1.7; }
   background: var(--orange);
   opacity: 0.13;
 }
+.about-stat { text-align: center; position: relative; z-index: 1; }
+.about-stat-divider {
+  width: 40px; height: 1px;
+  background: rgba(255,255,255,0.2);
+  margin: 1.25rem auto;
+  position: relative; z-index: 1;
+}
 .about-visual .since-year {
   font-family: 'TradeGothicBold', sans-serif;
   font-weight: 700;
-  font-size: 5.5rem;
+  font-size: 4rem;
   color: var(--white);
   position: relative; z-index: 1;
   line-height: 1;
+  display: block;
 }
 .about-visual .since-label {
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   color: rgba(255,255,255,0.5);
   text-transform: uppercase;
   letter-spacing: 0.3em;
-  margin-top: 0.5rem;
+  margin-top: 0.4rem;
   position: relative; z-index: 1;
+  display: block;
 }
 
 /* ── ACCORDION (Haftung & Datenschutz) ──────────────────── */
@@ -989,8 +1209,7 @@ p  { line-height: 1.7; }
 }
 .process-track__icon svg { width: 26px; height: 26px; display: block; }
 .process-track__icon--final {
-  background: var(--dark-grey);
-  box-shadow: 0 0 0 3px var(--orange);
+  background: var(--orange);
 }
 
 /* Inhaltsspalte rechts vom Icon */
@@ -1001,14 +1220,16 @@ p  { line-height: 1.7; }
   padding-top: 2px; /* optische Ausrichtung mit Icon-Mitte */
 }
 
-/* Schrittnummer als kleine Beschriftung über dem Titel */
+/* Schrittnummer – groß, innerhalb der Karte */
 .process-track__badge {
   font-family: 'TradeGothicBold', sans-serif;
   font-weight: 700;
-  font-size: 0.72rem;
-  letter-spacing: 0.14em;
+  font-size: 1.6rem;
+  letter-spacing: 0.05em;
   color: var(--orange);
-  margin-bottom: 0.3rem;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+  display: block;
 }
 
 /* Karte mit Inhalt */
@@ -1322,7 +1543,8 @@ p  { line-height: 1.7; }
   .section { padding: 56px 0; }
   /* Reset diagonal layout on small screens */
   .section--diag { clip-path: none; margin: 0; padding-top: 56px; padding-bottom: 56px; }
-  .contact-cta  { clip-path: none; margin-top: 0; padding-top: 80px; }
+  .contact-cta  { clip-path: none; margin-top: 0; padding-top: 80px; border-top: 3px solid var(--orange); }
+  .contact-cta::before { display: none; }
   .stats__grid      { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
   .features__grid   { grid-template-columns: 1fr; }
   .service-teasers  { grid-template-columns: 1fr; }
