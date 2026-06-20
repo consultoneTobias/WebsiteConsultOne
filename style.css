@@ -913,46 +913,32 @@ p  { line-height: 1.7; }
   align-items: center;
 }
 .about-visual {
-  background: var(--dark-grey);
-  aspect-ratio: 4 / 3;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  position: relative;
-  overflow: hidden;
+  gap: 0;
 }
-.about-visual::before {
-  content: '';
-  position: absolute;
-  right: 0; top: 0;
-  width: 40%; height: 100%;
-  background: var(--orange);
-  opacity: 0.13;
-}
-.about-stat { text-align: center; position: relative; z-index: 1; }
+.about-stat { text-align: left; }
 .about-stat-divider {
-  width: 40px; height: 1px;
-  background: rgba(255,255,255,0.2);
-  margin: 1.25rem auto;
-  position: relative; z-index: 1;
+  width: 40px; height: 2px;
+  background: var(--orange);
+  margin: 1.5rem 0;
 }
 .about-visual .since-year {
   font-family: 'TradeGothicBold', sans-serif;
   font-weight: 700;
-  font-size: 4rem;
-  color: var(--white);
-  position: relative; z-index: 1;
+  font-size: 4.5rem;
+  color: var(--dark-grey);
   line-height: 1;
   display: block;
 }
 .about-visual .since-label {
-  font-size: 0.68rem;
-  color: rgba(255,255,255,0.5);
+  font-size: 0.72rem;
+  color: var(--text-light);
   text-transform: uppercase;
-  letter-spacing: 0.3em;
+  letter-spacing: 0.25em;
   margin-top: 0.4rem;
-  position: relative; z-index: 1;
   display: block;
 }
 
