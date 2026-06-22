@@ -1,3 +1,4 @@
+
 // Mobile nav toggle
 const navToggle = document.getElementById('navToggle');
 const navLinks  = document.getElementById('navLinks');
@@ -132,7 +133,7 @@ if (statEls.length > 0) {
         const raw = el.textContent.trim();
         const suffix = raw.includes('+') ? '+' : '';
         const target = parseInt(raw.replace('+', ''), 10);
-        animateCounter(el, target, suffix, 1600);
+        animateCounter(el, target, suffix, 2600);
         observer.unobserve(el);
       }
     });
